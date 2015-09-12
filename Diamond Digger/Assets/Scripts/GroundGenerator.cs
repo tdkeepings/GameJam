@@ -11,10 +11,11 @@ public class GroundGenerator : MonoBehaviour
 	public int gridHeight = 5;
 	public int size = 1;
 	public int randomSeed = 123;
-	
+    public GameObject TopLayer;
+
 	public Array2DGameObjects[] generatedBlocks2D;
 
-    private GameObject GrassBlock;
+    
 
 	[ContextMenu("Generate ground")]
 	public void GenerateBlocks () 
@@ -23,13 +24,6 @@ public class GroundGenerator : MonoBehaviour
 		{
 			DeleteBlocks();
 		}
-
-        //Populate GrassBlock if available
-        foreach (GameObject b in block) {
-            if (b.name == "GrassBlock"){
-                GrassBlock = b;
-            }
-        }
 
 		// Create our 2d array
 		generatedBlocks2D = new Array2DGameObjects[gridWidth];
@@ -47,13 +41,13 @@ public class GroundGenerator : MonoBehaviour
 			{
                 
                 //Set top layer to GrassBlocks if they're included
-                if (vertical + 1 == gridHeight && GrassBlock != null) 
-                    currentBlock = PrefabUtility.InstantiatePrefab(GrassBlock) as GameObject;
+                if (vertical + 1 == gridHeight && TopLayer != null) 
+                    currentBlock = PrefabUtility.InstantiatePrefab(TopLayer) as GameObject;
                 else
                     currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
                 
                 generatedBlocks2D[horizontal][vertical] = currentBlock;
-				currentBlock.name = "(" + horizontal + "," + vertical + ")";
+				currentBlock.name = horizontal + "," + vertical;
 				currentBlock.transform.position = new Vector3(horizontal * size, vertical * size, 0) + transform.position;
 				currentBlock.transform.parent = transform;
 			}
