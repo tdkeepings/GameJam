@@ -96,6 +96,11 @@ public class Block : MonoBehaviour
 		}
 	}
 
+	public void OnCollisionEnter2D(Collision2D collision)
+	{
+		Dig(10 * collision.relativeVelocity.magnitude);
+	}
+
 	public void UpdateEdges()
 	{
 		if (top != null)
