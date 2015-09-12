@@ -35,6 +35,8 @@ public class LauncherController : MonoBehaviour {
             currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
             currentPlayer.transform.position = new Vector3(-1000f, -1000f, -1000f);
             players.RemoveAt(0);
+        } else { 
+
         }
     }
 
