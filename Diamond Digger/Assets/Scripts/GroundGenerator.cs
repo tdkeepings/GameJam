@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class GroundGenerator : MonoBehaviour 
 {
@@ -47,5 +49,28 @@ public class GroundGenerator : MonoBehaviour
 		{
 			DestroyImmediate(child.gameObject);
 		}
+	}
+
+	public BlockNeighbours GetNeighbours(GameObject go)
+	{
+		string[] stringValues = go.name.Split(',');
+		int x = int.Parse(stringValues[0]);
+		int y = int.Parse(stringValues[1]);
+
+		BlockNeighbours bn = new BlockNeighbours();
+
+		if (x > 0)
+			bn.left = generatedBlocks2D[x - 1][y];
+
+		if (x < gridWidth - 1)
+			bn.right = generatedBlocks2D[x + 1][y];
+
+		if (y > 0)
+			bn.bottom = generatedBlocks2D[x][y - 1];
+
+		if (y < gridHeight -1)
+			bn.top = generatedBlocks2D[x][y + 1];
+
+		return bn;
 	}
 }
