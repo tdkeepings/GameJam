@@ -5,19 +5,28 @@ using UnityEngine.Assertions;
 public class Block : MonoBehaviour
 {
 	public float health = 100;
-	Animator animator;
-	int healthHash;
+	public ParticleSystem digEffect;
 
-	void Start()
+	GameObject Player
 	{
-		animator = GetComponent<Animator>();
-		healthHash = Animator.StringToHash("health");
+		get
+		{
+			if (_player == null)
+				_player = GameObject.FindGameObjectWithTag("Player");
+			return _player; 
+		}
+		set { _player = value; }
 	}
+	GameObject _player;
 
+	[ContextMenu("Dig")]
 	public void Dig(float dmg)
 	{
+		// Rotate towards the player
+		digEffect.transform.parent.LookAt(Player.transform);
+		digEffect.Emit(30);
+
 		health -= dmg;
-		animator.SetFloat(healthHash, health);
 		if(health <= 0)
 			DestroyBlock();
 	}
