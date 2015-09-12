@@ -4513,7 +4513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d71d3166cb15f4da1f40fb21148fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  players:
+  - {fileID: 178224, guid: ce3ffc0bc51a3824b98787a0be3d181b, type: 2}
+  - {fileID: 178224, guid: ce3ffc0bc51a3824b98787a0be3d181b, type: 2}
   angle: 20
   power: 0
   pivot: {fileID: 1275166468}
@@ -7436,8 +7438,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 448821ab8daf5744aa255cce9dfc7c8e, type: 3}
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -7445,9 +7447,9 @@ MonoBehaviour:
     m_Alignment: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score is here
+  m_Text: 'Score: 0
 
 '
 --- !u!222 &448173878
@@ -7470,8 +7472,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -40}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 10, y: -79}
+  m_SizeDelta: {x: 425.700012, y: 69}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &449602627 stripped
 GameObject:
