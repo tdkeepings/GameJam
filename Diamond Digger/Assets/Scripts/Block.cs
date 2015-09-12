@@ -112,7 +112,7 @@ public class Block : MonoBehaviour
 
 	public void OnCollisionEnter2D(Collision2D collision)
 	{
-		Dig(50 * collision.relativeVelocity.magnitude);
+		Dig(60 * collision.relativeVelocity.magnitude);
 
 		Vector3 dir = (Vector2)digEffect.transform.parent.position - collision.contacts[0].point; 
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
