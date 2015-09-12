@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: f862cfd150369e44a8b6c3b55947d50d
-timeCreated: 1442055100
-licenseType: Free
+timeCreated: 1442070420
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: Player128_0
@@ -59,8 +59,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Player128_1
       rect:
@@ -69,8 +69,8 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
