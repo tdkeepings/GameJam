@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class GroundGenerator : MonoBehaviour 
@@ -33,7 +34,7 @@ public class GroundGenerator : MonoBehaviour
 		{
 			for (int horizontal = 0; horizontal < gridWidth; horizontal++)
 			{
-				GameObject currentBlock = Instantiate(block[Random.Range(0, block.Length)]);
+				GameObject currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
 				generatedBlocks2D[horizontal][vertical] = currentBlock;
 				currentBlock.name = "(" + horizontal + "," + vertical + ")";
 				currentBlock.transform.position = new Vector3(horizontal * size, vertical * size, 0) + transform.position;
@@ -43,11 +44,12 @@ public class GroundGenerator : MonoBehaviour
 	}
 
 	[ContextMenu("Delete ground")]
-	public void DeleteBlocks() 
+	public void DeleteBlocks()
 	{
-		foreach(Transform child in transform)
+		int childCount = transform.childCount;
+		for(int i = 0; i < childCount; ++i)
 		{
-			DestroyImmediate(child.gameObject);
+			DestroyImmediate(transform.GetChild(0).gameObject);
 		}
 	}
 
