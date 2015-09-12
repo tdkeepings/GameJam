@@ -15,7 +15,7 @@ public class GroundGenerator : MonoBehaviour
 
 	public Array2DGameObjects[] generatedBlocks2D;
 
-    
+	public GameObject GrassBlock;
 
 	[ContextMenu("Generate ground")]
 	public void GenerateBlocks () 

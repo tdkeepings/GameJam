@@ -57,6 +57,7 @@ public class Block : MonoBehaviour
 	void DestroyBlock()
 	{
 		SetState(BlockState.Destroyed);
+		UpdateEdges();
 	}
 
 	public void SetState(BlockState bs)
@@ -70,6 +71,15 @@ public class Block : MonoBehaviour
 		{
 				case BlockState.Destroyed:
 				deadState.SetActive(true);
+				GetComponent<Collider2D>().enabled = false;
+				if(neighbours.top != null)
+					neighbours.top.GetComponent<Block>().OnNeighbourDestroyed();
+				if(neighbours.bottom != null)
+					neighbours.bottom.GetComponent<Block>().OnNeighbourDestroyed();
+				if(neighbours.left != null)
+					neighbours.left.GetComponent<Block>().OnNeighbourDestroyed();
+				if(neighbours.right != null)
+					neighbours.right.GetComponent<Block>().OnNeighbourDestroyed();
 				break;
 
 				case BlockState.Hidden:
@@ -82,9 +92,16 @@ public class Block : MonoBehaviour
 		}
 	}
 
+	public void OnNeighbourDestroyed()
+	{
+		if (state != BlockState.Destroyed) 
+			SetState(BlockState.Visible);
+		UpdateEdges();
+	}
+
 	public void OnCollisionEnter2D(Collision2D collision)
 	{
-		Dig(10 * collision.relativeVelocity.magnitude);
+		Dig(15 * collision.relativeVelocity.magnitude);
 
 		Vector3 dir = (Vector2)digEffect.transform.parent.position - collision.contacts[0].point; 
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -92,37 +109,50 @@ public class Block : MonoBehaviour
 		
 		// Emit particles
 		digEffect.Emit(30);
-
 	}
 
 	public void UpdateEdges()
 	{
-		if (top != null)
+		if (state == BlockState.Destroyed)
 		{
-			top.SetActive(neighbours.top == null || (neighbours.top && neighbours.top.GetComponent<Block>().state == BlockState.Destroyed));
-			if(state == BlockState.Hidden && top.activeSelf)
-				SetState(BlockState.Visible);
+			if(top != null)
+				top.SetActive(false);
+			if(bottom != null)
+				bottom.SetActive(false);
+			if(left != null)
+				left.SetActive(false);
+			if(right != null)
+				right.SetActive(false);
 		}
-
-		if (bottom != null)
+		else
 		{
-			bottom.SetActive(neighbours.bottom && neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
-			if(state == BlockState.Hidden && bottom.activeSelf)
-				SetState(BlockState.Visible);
-		}
+			if (top != null)
+			{
+				top.SetActive(neighbours.top == null || (neighbours.top && neighbours.top.GetComponent<Block>().state == BlockState.Destroyed));
+				if(state == BlockState.Hidden && top.activeSelf)
+					SetState(BlockState.Visible);
+			}
 
-		if (right != null)
-		{
-			right.SetActive(neighbours.right && neighbours.right.GetComponent<Block>().state == BlockState.Destroyed);
-			if(state == BlockState.Hidden && right.activeSelf)
-				SetState(BlockState.Visible);
-		}
+			if (bottom != null)
+			{
+				bottom.SetActive(neighbours.bottom && neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
+				if(state == BlockState.Hidden && bottom.activeSelf)
+					SetState(BlockState.Visible);
+			}
 
-		if (left != null)
-		{
-			left.SetActive(neighbours.left && neighbours.left.GetComponent<Block>().state == BlockState.Destroyed);
-			if(state == BlockState.Hidden && left.activeSelf)
-				SetState(BlockState.Visible);
+			if (right != null)
+			{
+				right.SetActive(neighbours.right && neighbours.right.GetComponent<Block>().state == BlockState.Destroyed);
+				if(state == BlockState.Hidden && right.activeSelf)
+					SetState(BlockState.Visible);
+			}
+
+			if (left != null)
+			{
+				left.SetActive(neighbours.left && neighbours.left.GetComponent<Block>().state == BlockState.Destroyed);
+				if(state == BlockState.Hidden && left.activeSelf)
+					SetState(BlockState.Visible);
+			}
 		}
 	}
 }

@@ -6186,6 +6186,7 @@ MonoBehaviour:
   gridHeight: 6
   size: 1
   randomSeed: 123
+  TopLayer: {fileID: 0}
   generatedBlocks2D:
   - index: 0
     innerList:
@@ -6339,6 +6340,7 @@ MonoBehaviour:
     - {fileID: 1769542687}
     - {fileID: 960785357}
     - {fileID: 1970833561}
+  GrassBlock: {fileID: 0}
 --- !u!4 &2011206960
 Transform:
   m_ObjectHideFlags: 0
