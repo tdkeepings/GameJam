@@ -62,7 +62,6 @@ public class GroundGenerator : MonoBehaviour
 		{
 			DestroyImmediate(transform.GetChild(0).gameObject);
 		}
-        GrassBlock = null;
 	}
 
 	public BlockNeighbours GetNeighbours(GameObject go)
