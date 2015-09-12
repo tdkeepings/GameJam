@@ -45,23 +45,9 @@ public class Block : MonoBehaviour
 		neighbours = GetComponentInParent<GroundGenerator>().GetNeighbours(gameObject);
 		UpdateEdges();
 	}
-	
-	[ContextMenu("Dig")]
-	public void TestDig()
-	{
-		Dig(10);
-	}
 
 	public void Dig(float dmg)
 	{
-		// Rotate towards the player
-		Vector2 deltas = transform.position - Player.transform.position;
-		float angle = -Mathf.Rad2Deg * Mathf.Atan(deltas.y / deltas.x);
-		digEffect.transform.parent.eulerAngles = new Vector3(0, 0, angle);
-
-		// Emit particles
-		digEffect.Emit(30);
-
 		// Calculate new health
 		health -= dmg;
 		if(health <= 0)
@@ -99,6 +85,14 @@ public class Block : MonoBehaviour
 	public void OnCollisionEnter2D(Collision2D collision)
 	{
 		Dig(10 * collision.relativeVelocity.magnitude);
+
+		Vector3 dir = (Vector2)digEffect.transform.parent.position - collision.contacts[0].point; 
+		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+		digEffect.transform.parent.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		
+		// Emit particles
+		digEffect.Emit(30);
+
 	}
 
 	public void UpdateEdges()
