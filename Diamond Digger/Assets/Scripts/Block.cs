@@ -6,6 +6,26 @@ public class Block : MonoBehaviour
 {
 	public float health = 100;
 	public ParticleSystem digEffect;
+	BlockNeighbours neighbours;
+
+	public enum BlockState
+	{
+		Hidden,       // The player can not see what the block contains
+		Visible,      // The blocks contents is visible
+		Destroyed     // The block has been destroyed.
+	}
+	public BlockState state = BlockState.Hidden;
+
+	// States
+	public GameObject hiddenState;
+	public GameObject aliveState;
+	public GameObject deadState;
+
+	// Edges
+	public GameObject top;
+	public GameObject bottom;
+	public GameObject left;
+	public GameObject right;
 
 	GameObject Player
 	{
@@ -19,12 +39,28 @@ public class Block : MonoBehaviour
 	}
 	GameObject _player;
 
+	void Start()
+	{
+		SetState(state);
+		neighbours = GetComponent<GroundGenerator>().GetNeighbours(gameObject);
+		bool active = (neighbours.top == null || neighbours.top.GetComponent<Block>().state == BlockState.Destroyed);
+		top.SetActive(active);
+
+		active = (neighbours.bottom == null || neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
+		bottom.SetActive(active);
+
+		if (neighbours.left == null || neighbours.left.GetComponent<Block>().state == BlockState.Destroyed)
+			left.SetActive(true);
+		if (neighbours.right == null || neighbours.right.GetComponent<Block>().state == BlockState.Destroyed)
+			right.SetActive(true);
+	}
+	
 	[ContextMenu("Dig")]
 	public void TestDig()
 	{
 		Dig(10);
 	}
-	
+
 	public void Dig(float dmg)
 	{
 		// Rotate towards the player
@@ -43,10 +79,37 @@ public class Block : MonoBehaviour
 
 	void DestroyBlock()
 	{
-		// TOOD: particle/animation of block crumbling
+		SetState(BlockState.Destroyed);
+	}
 
-		// Inform our neighbours
-		var controller = GetComponentInParent<GroundGenerator>();
-		
+	public void SetState(BlockState bs)
+	{
+		aliveState.SetActive(false);
+		hiddenState.SetActive(false);
+		deadState.SetActive(false);
+
+		state = bs;
+		switch (bs)
+		{
+				case BlockState.Destroyed:
+				deadState.SetActive(true);
+				break;
+
+				case BlockState.Hidden:
+				hiddenState.SetActive(true);
+				break;
+
+				case BlockState.Visible:
+				aliveState.SetActive(true);
+				break;
+		}
+	}
+
+	public void UpdateEdges()
+	{
+		left.SetActive(neighbours.left == null || neighbours.left.GetComponent<Block>().state == BlockState.Destroyed);
+		right.SetActive(neighbours.right == null || neighbours.right.GetComponent<Block>().state == BlockState.Destroyed);
+		top.SetActive(neighbours.top == null || neighbours.top.GetComponent<Block>().state == BlockState.Destroyed);
+		bottom.SetActive(neighbours.bottom == null || neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
 	}
 }
