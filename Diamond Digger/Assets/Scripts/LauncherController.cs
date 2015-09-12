@@ -7,6 +7,8 @@ public class LauncherController : MonoBehaviour {
     public List<GameObject> players;
     public float angle;
     public float power;
+	public Transform pivot;
+	public ProjectileFollow cameraController;
 
     private SurfaceEffector2D launcherSE;
     private GameObject currentPlayer;
@@ -33,6 +35,7 @@ public class LauncherController : MonoBehaviour {
         if (players.Count > 0) {
             currentPlayer = null;
             currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
+	        cameraController.projectile = currentPlayer.transform;
             currentPlayer.transform.position = new Vector3(-1000f, -1000f, -1000f);
             players.RemoveAt(0);
         }
@@ -60,6 +63,6 @@ public class LauncherController : MonoBehaviour {
          else if (angle < 10) 
             angle = 10f;
          else 
-            this.transform.rotation = Quaternion.Euler(0, 0, angle);
+            pivot.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
