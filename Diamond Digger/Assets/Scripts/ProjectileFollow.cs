@@ -8,23 +8,24 @@ public class ProjectileFollow : MonoBehaviour {
 	public Transform projectile;        // The transform of the projectile to follow.
 	public Transform farLeft;           // The transform representing the left bound of the camera's position.
 	public Transform farRight;          // The transform representing the right bound of the camera's position.
+	Vector3 defaultCamPos;
+	public float camSpeed = 5;
+
+	void Start()
+	{
+		defaultCamPos = transform.position;
+	}
 
 	void Update ()
 	{
-		if (projectile == null)
-			return;
-
-		// Store the position of the camera.
-		Vector3 newPosition = transform.position;
-		
-		// Set the x value of the stored position to that of the bird.
-		newPosition.x = projectile.position.x;
-		newPosition.y = projectile.position.y;
+		Vector3 target = projectile == null
+			? defaultCamPos
+			: projectile.transform.position;
 		
 		// Clamp the x value of the stored position between the left and right bounds.
-		newPosition.x = Mathf.Clamp (newPosition.x, farLeft.position.x, farRight.position.x);
-		
-		// Set the camera's position to this stored position.
-		transform.position = newPosition;
+		target.x = Mathf.Clamp (target.x, farLeft.position.x, farRight.position.x);
+		target.z = transform.position.z; // Dont change z
+
+		transform.position = iTween.Vector3Update(transform.position, target, camSpeed);
 	}
 }

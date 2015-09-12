@@ -4735,6 +4735,7 @@ MonoBehaviour:
   projectile: {fileID: 1149534344}
   farLeft: {fileID: 1720273756}
   farRight: {fileID: 1517408038}
+  camSpeed: 3
 --- !u!1 &264931895 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 123296, guid: cfd42c0592f52b34e8c75bd3e91a88af, type: 2}
@@ -16688,6 +16689,46 @@ GameObject:
 Transform:
   m_PrefabParentObject: {fileID: 487788, guid: cfd42c0592f52b34e8c75bd3e91a88af, type: 2}
   m_PrefabInternal: {fileID: 21641092}
+--- !u!1 &1131477731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1131477733}
+  - 114: {fileID: 1131477732}
+  m_Layer: 0
+  m_Name: Score Keeper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1131477732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131477731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b916a717e3ee344eab43f0cfffdf3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTxt: {fileID: 448173877}
+--- !u!4 &1131477733
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131477731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.9103889, y: -11.9310389, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &1131704721 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 123296, guid: cfd42c0592f52b34e8c75bd3e91a88af, type: 2}
@@ -29202,7 +29243,7 @@ MonoBehaviour:
     - {fileID: 1229651349}
     - {fileID: 1848167282}
     - {fileID: 1692072243}
-  GrassBlock: {fileID: 0}
+  scoreKeeper: {fileID: 1131477732}
 --- !u!4 &2011206960
 Transform:
   m_ObjectHideFlags: 0
