@@ -11,6 +11,5 @@ public class ScoreKeeper : MonoBehaviour {
     public void UpdateScore(float value) {
         score += value;
         scoreTxt.text = "Score: " + score;
-        print(value);
     }
 }
