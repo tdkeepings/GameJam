@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118610}
   m_LocalRotation: {x: 0, y: 0, z: -.707106829, w: .707106709}
-  m_LocalPosition: {x: .0110149384, y: .503747344, z: 0}
+  m_LocalPosition: {x: -.486000001, y: 0, z: 0}
   m_LocalScale: {x: 6.22700644, y: .155087277, z: 1}
   m_Children: []
   m_Father: {fileID: 411834}
@@ -239,7 +239,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159380}
   m_LocalRotation: {x: 0, y: 0, z: -.707106829, w: .707106709}
-  m_LocalPosition: {x: .986988068, y: .496249169, z: 0}
+  m_LocalPosition: {x: .49000001, y: 0, z: 0}
   m_LocalScale: {x: 6.22700644, y: .155087277, z: 1}
   m_Children: []
   m_Father: {fileID: 411834}
@@ -266,7 +266,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .498999596, y: .988000035, z: 0}
+  m_LocalPosition: {x: 0, y: .486000001, z: 0}
   m_LocalScale: {x: 6.22700596, y: .155087277, z: 1}
   m_Children: []
   m_Father: {fileID: 411834}
@@ -278,7 +278,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .498999596, y: .0119999945, z: 0}
+  m_LocalPosition: {x: 0, y: -.5, z: 0}
   m_LocalScale: {x: 6.22700596, y: .155087277, z: 1}
   m_Children: []
   m_Father: {fileID: 411834}
@@ -338,7 +338,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.2966633, y: -5.75848436, z: 0}
+  m_LocalPosition: {x: 18, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411834}
@@ -356,7 +356,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .5, y: .5}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
 --- !u!114 &11441686
@@ -376,10 +376,10 @@ MonoBehaviour:
   hiddenState: {fileID: 112566}
   aliveState: {fileID: 139876}
   deadState: {fileID: 125722}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
+  top: {fileID: 155194}
+  bottom: {fileID: 148896}
+  left: {fileID: 118610}
+  right: {fileID: 159380}
 --- !u!198 &19888644
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1572,7 +1572,7 @@ SpriteRenderer:
   m_SortingLayerID: -391361249
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce9683321e16e6045a143fc6ddedcf69, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: .321999997}
 --- !u!212 &21271480
 SpriteRenderer:
   m_ObjectHideFlags: 1
