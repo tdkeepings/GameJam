@@ -20,12 +20,22 @@ public class Block : MonoBehaviour
 	GameObject _player;
 
 	[ContextMenu("Dig")]
+	public void TestDig()
+	{
+		Dig(10);
+	}
+	
 	public void Dig(float dmg)
 	{
 		// Rotate towards the player
-		digEffect.transform.parent.LookAt(Player.transform);
+		Vector2 deltas = transform.position - Player.transform.position;
+		float angle = -Mathf.Rad2Deg * Mathf.Atan(deltas.y / deltas.x);
+		digEffect.transform.parent.eulerAngles = new Vector3(0, 0, angle);
+
+		// Emit particles
 		digEffect.Emit(30);
 
+		// Calculate new health
 		health -= dmg;
 		if(health <= 0)
 			DestroyBlock();
