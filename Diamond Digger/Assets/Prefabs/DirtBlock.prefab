@@ -376,10 +376,10 @@ MonoBehaviour:
   hiddenState: {fileID: 112566}
   aliveState: {fileID: 139876}
   deadState: {fileID: 125722}
-  top: {fileID: 0}
-  bottom: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
+  top: {fileID: 155194}
+  bottom: {fileID: 148896}
+  left: {fileID: 118610}
+  right: {fileID: 159380}
 --- !u!198 &19888644
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -1572,7 +1572,7 @@ SpriteRenderer:
   m_SortingLayerID: -391361249
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce9683321e16e6045a143fc6ddedcf69, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: .321999997}
 --- !u!212 &21271480
 SpriteRenderer:
   m_ObjectHideFlags: 1
