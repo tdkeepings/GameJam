@@ -14,6 +14,8 @@ public class GroundGenerator : MonoBehaviour
 	
 	public Array2DGameObjects[] generatedBlocks2D;
 
+    private GameObject GrassBlock;
+
 	[ContextMenu("Generate ground")]
 	public void GenerateBlocks () 
 	{
@@ -21,6 +23,13 @@ public class GroundGenerator : MonoBehaviour
 		{
 			DeleteBlocks();
 		}
+
+        //Populate GrassBlock if available
+        foreach (GameObject b in block) {
+            if (b.name == "GrassBlock"){
+                GrassBlock = b;
+            }
+        }
 
 		// Create our 2d array
 		generatedBlocks2D = new Array2DGameObjects[gridWidth];
@@ -30,16 +39,19 @@ public class GroundGenerator : MonoBehaviour
 		}
 
 		Random.seed = randomSeed;
+        GameObject currentBlock;
+
 		for (int vertical = 0; vertical < gridHeight; vertical++) 
 		{
 			for (int horizontal = 0; horizontal < gridWidth; horizontal++)
 			{
-                GameObject currentBlock;
-                if (vertical + 1 == gridHeight) {
-                    currentBlock = PrefabUtility.InstantiatePrefab(block[2]) as GameObject;
-                } else {
+                
+                //Set top layer to GrassBlocks if they're included
+                if (vertical + 1 == gridHeight && GrassBlock != null) 
+                    currentBlock = PrefabUtility.InstantiatePrefab(GrassBlock) as GameObject;
+                else
                     currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
-                }
+                
                 generatedBlocks2D[horizontal][vertical] = currentBlock;
 				currentBlock.name = "(" + horizontal + "," + vertical + ")";
 				currentBlock.transform.position = new Vector3(horizontal * size, vertical * size, 0) + transform.position;
@@ -56,6 +68,7 @@ public class GroundGenerator : MonoBehaviour
 		{
 			DestroyImmediate(transform.GetChild(0).gameObject);
 		}
+        GrassBlock = null;
 	}
 
 	public BlockNeighbours GetNeighbours(GameObject go)
