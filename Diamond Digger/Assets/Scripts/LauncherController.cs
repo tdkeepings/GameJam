@@ -56,8 +56,9 @@ public class LauncherController : MonoBehaviour {
             power = 100;
         else if (power < 10)
             power = 10;
-        else 
+        else {
             launcherSE.speed = power;
+        }
         
         //Angle
         if (angle > 45) 
