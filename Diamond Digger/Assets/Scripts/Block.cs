@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Block : MonoBehaviour
 {
 	public float health = 100;
+    public float scoreValue = 1;
 	public ParticleSystem digEffect;
 	BlockNeighbours neighbours;
 
@@ -28,7 +29,10 @@ public class Block : MonoBehaviour
 	public GameObject left;
 	public GameObject right;
 
-	public UnityEvent destroyed;
+    [System.Serializable]
+    public class UnityScoreEvent : UnityEvent<float> { };
+
+    public UnityScoreEvent destroyed;
 
 	GameObject Player
 	{
@@ -63,6 +67,8 @@ public class Block : MonoBehaviour
 		UpdateEdges();
 	}
 
+    
+
 	public void SetState(BlockState bs)
 	{
 		aliveState.SetActive(false);
@@ -83,7 +89,8 @@ public class Block : MonoBehaviour
 					neighbours.left.GetComponent<Block>().OnNeighbourDestroyed();
 				if(neighbours.right != null)
 					neighbours.right.GetComponent<Block>().OnNeighbourDestroyed();
-				destroyed.Invoke();
+                
+				destroyed.Invoke(scoreValue);
 				break;
 
 				case BlockState.Hidden:

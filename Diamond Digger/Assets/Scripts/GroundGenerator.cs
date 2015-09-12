@@ -15,7 +15,11 @@ public class GroundGenerator : MonoBehaviour
 
 	public Array2DGameObjects[] generatedBlocks2D;
 
-	public GameObject GrassBlock;
+    public ScoreKeeper scoreKeeper;
+
+    void Awake() {
+        GenerateBlocks();
+    }
 
 	[ContextMenu("Generate ground")]
 	public void GenerateBlocks () 
@@ -48,6 +52,7 @@ public class GroundGenerator : MonoBehaviour
                 
                 generatedBlocks2D[horizontal][vertical] = currentBlock;
 				currentBlock.name = horizontal + "," + vertical;
+                currentBlock.GetComponent<Block>().destroyed.AddListener(scoreKeeper.UpdateScore);
 				currentBlock.transform.position = new Vector3(horizontal * size, vertical * size, 0) + transform.position;
 				currentBlock.transform.parent = transform;
 			}
