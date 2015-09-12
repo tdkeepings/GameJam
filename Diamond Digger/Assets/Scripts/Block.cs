@@ -99,15 +99,31 @@ public class Block : MonoBehaviour
 	public void UpdateEdges()
 	{
 		if (top != null)
+		{
 			top.SetActive(neighbours.top == null || (neighbours.top && neighbours.top.GetComponent<Block>().state == BlockState.Destroyed));
+			if(state == BlockState.Hidden && top.activeSelf)
+				SetState(BlockState.Visible);
+		}
 
 		if (bottom != null)
-			bottom.SetActive(neighbours.bottom == null || (neighbours.bottom && neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed));
+		{
+			bottom.SetActive(neighbours.bottom && neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
+			if(state == BlockState.Hidden && bottom.activeSelf)
+				SetState(BlockState.Visible);
+		}
 
 		if (right != null)
-			right.SetActive(neighbours.right == null || (neighbours.right && neighbours.right.GetComponent<Block>().state == BlockState.Destroyed));
+		{
+			right.SetActive(neighbours.right && neighbours.right.GetComponent<Block>().state == BlockState.Destroyed);
+			if(state == BlockState.Hidden && right.activeSelf)
+				SetState(BlockState.Visible);
+		}
 
 		if (left != null)
-			left.SetActive(neighbours.left == null || (neighbours.left && neighbours.left.GetComponent<Block>().state == BlockState.Destroyed));
+		{
+			left.SetActive(neighbours.left && neighbours.left.GetComponent<Block>().state == BlockState.Destroyed);
+			if(state == BlockState.Hidden && left.activeSelf)
+				SetState(BlockState.Visible);
+		}
 	}
 }
