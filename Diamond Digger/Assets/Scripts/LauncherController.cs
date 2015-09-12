@@ -1,48 +1,65 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class LauncherController : MonoBehaviour {
 
-    public float Angle;
-    public float Power;
+    public List<GameObject> players;
+    public float angle;
+    public float power;
 
-    private SurfaceEffector2D LauncherSE;
+    private SurfaceEffector2D launcherSE;
+    private GameObject currentPlayer;
 
 	// Use this for initialization
 	void Start () {
-	    LauncherSE = GetComponent<SurfaceEffector2D>();
+	    launcherSE = GetComponent<SurfaceEffector2D>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        float angleInput = Input.GetAxis("Horizontal");
-        Angle += angleInput;
+        if (Input.GetKeyDown("space")) {
+            LoadLauncher();
+            FireCurrentPlayer();
+        }
 
-        float powerInput = Input.GetAxis("Vertical");
-        Power += powerInput;
+        angle += Input.GetAxis("Horizontal");
+        power += Input.GetAxis("Vertical");
 
         UpdateLauncher();
 	}
 
-    private void UpdateLauncher(){
-        //Power
-        if (Power > 100)
-            Power = 100;
-        else if (Power < 10)
-            Power = 10;
-        else {
-            LauncherSE.speed = Power;
-        }
-
-
-        //Angle
-        if (Angle > 45) {
-            Angle = 45f;
-        } else if (Angle < 10) {
-            Angle = 10f;
-        } else {
-            this.transform.rotation = Quaternion.Euler(0, 0, Angle);
+    private void LoadLauncher() {
+        if (players.Count > 0) {
+            currentPlayer = null;
+            currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
+            currentPlayer.transform.position = new Vector3(-1000f, -1000f, -1000f);
+            players.RemoveAt(0);
         }
     }
 
+    private void FireCurrentPlayer() {
+        Vector3 temp = this.transform.position;
+        temp.y += 2f;
+        currentPlayer.transform.position = temp;
+        
+    }
+
+    private void UpdateLauncher(){
+        //Power
+        if (power > 100)
+            power = 100;
+        else if (power < 10)
+            power = 10;
+        else 
+            launcherSE.speed = power;
+        
+        //Angle
+        if (angle > 45) 
+            angle = 45f;
+         else if (angle < 10) 
+            angle = 10f;
+         else 
+            this.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
 }
