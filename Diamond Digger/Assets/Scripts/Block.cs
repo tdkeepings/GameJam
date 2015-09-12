@@ -42,17 +42,8 @@ public class Block : MonoBehaviour
 	void Start()
 	{
 		SetState(state);
-		neighbours = GetComponent<GroundGenerator>().GetNeighbours(gameObject);
-		bool active = (neighbours.top == null || neighbours.top.GetComponent<Block>().state == BlockState.Destroyed);
-		top.SetActive(active);
-
-		active = (neighbours.bottom == null || neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
-		bottom.SetActive(active);
-
-		if (neighbours.left == null || neighbours.left.GetComponent<Block>().state == BlockState.Destroyed)
-			left.SetActive(true);
-		if (neighbours.right == null || neighbours.right.GetComponent<Block>().state == BlockState.Destroyed)
-			right.SetActive(true);
+		neighbours = GetComponentInParent<GroundGenerator>().GetNeighbours(gameObject);
+		UpdateEdges();
 	}
 	
 	[ContextMenu("Dig")]
@@ -107,9 +98,16 @@ public class Block : MonoBehaviour
 
 	public void UpdateEdges()
 	{
-		left.SetActive(neighbours.left == null || neighbours.left.GetComponent<Block>().state == BlockState.Destroyed);
-		right.SetActive(neighbours.right == null || neighbours.right.GetComponent<Block>().state == BlockState.Destroyed);
-		top.SetActive(neighbours.top == null || neighbours.top.GetComponent<Block>().state == BlockState.Destroyed);
-		bottom.SetActive(neighbours.bottom == null || neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed);
+		if (top != null)
+			top.SetActive(neighbours.top == null || (neighbours.top && neighbours.top.GetComponent<Block>().state == BlockState.Destroyed));
+
+		if (bottom != null)
+			bottom.SetActive(neighbours.bottom == null || (neighbours.bottom && neighbours.bottom.GetComponent<Block>().state == BlockState.Destroyed));
+
+		if (right != null)
+			right.SetActive(neighbours.right == null || (neighbours.right && neighbours.right.GetComponent<Block>().state == BlockState.Destroyed));
+
+		if (left != null)
+			left.SetActive(neighbours.left == null || (neighbours.left && neighbours.left.GetComponent<Block>().state == BlockState.Destroyed));
 	}
 }
