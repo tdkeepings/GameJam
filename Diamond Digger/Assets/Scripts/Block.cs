@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class Block : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class Block : MonoBehaviour
 	public GameObject bottom;
 	public GameObject left;
 	public GameObject right;
+
+	public UnityEvent destroyed;
 
 	GameObject Player
 	{
@@ -80,6 +83,7 @@ public class Block : MonoBehaviour
 					neighbours.left.GetComponent<Block>().OnNeighbourDestroyed();
 				if(neighbours.right != null)
 					neighbours.right.GetComponent<Block>().OnNeighbourDestroyed();
+				destroyed.Invoke();
 				break;
 
 				case BlockState.Hidden:
