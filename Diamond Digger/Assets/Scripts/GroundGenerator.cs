@@ -34,8 +34,13 @@ public class GroundGenerator : MonoBehaviour
 		{
 			for (int horizontal = 0; horizontal < gridWidth; horizontal++)
 			{
-				GameObject currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
-				generatedBlocks2D[horizontal][vertical] = currentBlock;
+                GameObject currentBlock;
+                if (vertical + 1 == gridHeight) {
+                    currentBlock = PrefabUtility.InstantiatePrefab(block[2]) as GameObject;
+                } else {
+                    currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
+                }
+                generatedBlocks2D[horizontal][vertical] = currentBlock;
 				currentBlock.name = "(" + horizontal + "," + vertical + ")";
 				currentBlock.transform.position = new Vector3(horizontal * size, vertical * size, 0) + transform.position;
 				currentBlock.transform.parent = transform;
