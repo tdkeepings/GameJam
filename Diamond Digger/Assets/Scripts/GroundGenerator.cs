@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor;
 using Random = UnityEngine.Random;
 
 public class GroundGenerator : MonoBehaviour 
@@ -46,9 +45,9 @@ public class GroundGenerator : MonoBehaviour
                 
                 //Set top layer to GrassBlocks if they're included
                 if (vertical + 1 == gridHeight && TopLayer != null) 
-                    currentBlock = PrefabUtility.InstantiatePrefab(TopLayer) as GameObject;
+                    currentBlock = Instantiate(TopLayer) as GameObject;
                 else
-                    currentBlock = PrefabUtility.InstantiatePrefab(block[Random.Range(0, block.Length)]) as GameObject;
+                    currentBlock = Instantiate(block[Random.Range(0, block.Length)]) as GameObject;
                 
                 generatedBlocks2D[horizontal][vertical] = currentBlock;
 				currentBlock.name = horizontal + "," + vertical;

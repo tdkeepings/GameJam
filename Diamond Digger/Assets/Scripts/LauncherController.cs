@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class LauncherController : MonoBehaviour {
@@ -43,7 +42,7 @@ public class LauncherController : MonoBehaviour {
         }
         if (players.Count > 0 && !isFlying) {
             currentPlayer = null;
-            currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
+            currentPlayer = Instantiate(players[0]) as GameObject;
             
             currentPlayer.transform.position = this.transform.position;
             cameraController.projectile = currentPlayer.transform;
@@ -58,9 +57,6 @@ public class LauncherController : MonoBehaviour {
             isFlying = true;
 
             UpdateLivesText();
-            
-            
-            
         }
     }
 
