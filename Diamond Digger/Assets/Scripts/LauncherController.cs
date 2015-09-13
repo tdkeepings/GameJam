@@ -44,8 +44,9 @@ public class LauncherController : MonoBehaviour {
         if (players.Count > 0 && !isFlying) {
             currentPlayer = null;
             currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
-	        cameraController.projectile = currentPlayer.transform;
             
+            currentPlayer.transform.position = this.transform.position;
+            cameraController.projectile = currentPlayer.transform;
             players.RemoveAt(0);
         } else { 
 
@@ -58,13 +59,8 @@ public class LauncherController : MonoBehaviour {
 
             UpdateLivesText();
             
-            //Set player on the launcher
-            Vector3 positionTemp = this.transform.position;
-            positionTemp.y += 1f;
-            positionTemp.z = 0f;
-
-            currentPlayer.transform.position = positionTemp;
-            currentPlayer.transform.rotation = this.transform.rotation;
+            
+            
         }
     }
 

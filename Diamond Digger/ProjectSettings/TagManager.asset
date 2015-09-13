@@ -44,12 +44,18 @@ TagManager:
   - name: Background
     uniqueID: 3551730019
     locked: 0
-  - name: Blocks
-    uniqueID: 3903606047
-    locked: 0
   - name: Character
     uniqueID: 1306738017
     locked: 0
   - name: Particles
     uniqueID: 3783773319
+    locked: 0
+  - name: Cannon
+    uniqueID: 4270036005
+    locked: 0
+  - name: Cannon Stand
+    uniqueID: 1344913819
+    locked: 0
+  - name: Blocks
+    uniqueID: 3903606047
     locked: 0
