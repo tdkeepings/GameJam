@@ -339,7 +339,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.365612, y: -1.54517174, z: 0}
+  m_LocalPosition: {x: -18.5185089, y: .68052125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411834}
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 90
-  scoreValue: 10
+  scoreValue: 50
   digEffect: {fileID: 19888644}
   state: 0
   hiddenState: {fileID: 112566}
@@ -1597,8 +1597,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -391361249
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56eb935f9adcd4244bbd83c21164412d, type: 3}
-  m_Color: {r: .669117689, g: .622971594, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e5da1f4029c0faf41850216490931e1b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21260276
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1649,7 +1649,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -391361249
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce9683321e16e6045a143fc6ddedcf69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5da1f4029c0faf41850216490931e1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: .321999997}
 --- !u!212 &21271480
 SpriteRenderer:
@@ -1675,8 +1675,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -391361249
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1ec29b97c52f1854191fb0036e44878e, type: 3}
-  m_Color: {r: .147058845, g: .147058845, b: .147058845, a: .546999991}
+  m_Sprite: {fileID: 21300000, guid: bf70c4a69a8b1d6448aae316a4124dab, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: .546999991}
 --- !u!212 &21273640
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1752,6 +1752,10 @@ Prefab:
       propertyPath: destroyClip
       value: 
       objectReference: {fileID: 8256490}
+    - target: {fileID: 0}
+      propertyPath: scoreValue
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123296}

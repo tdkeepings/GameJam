@@ -53,7 +53,7 @@ public class LauncherController : MonoBehaviour {
     }
 
     private void FireCurrentPlayer() {
-        if (!isFlying && players.Count > 0) {
+        if (!isFlying && players.Count >= 0) {
             isFlying = true;
 
             UpdateLivesText();
@@ -83,7 +83,7 @@ public class LauncherController : MonoBehaviour {
     }
 
     private void UpdateLivesText() {
-        if (players == null) {
+        if (players.Count == 0) {
             livesText.text = "Lives: 0";
         } else {
             livesText.text = "Lives: " + players.Count;
