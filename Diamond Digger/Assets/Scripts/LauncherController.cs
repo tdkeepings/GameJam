@@ -12,22 +12,16 @@ public class LauncherController : MonoBehaviour {
 	public ProjectileFollow cameraController;
     public Slider powerSlider;
     public Slider angleSlider;
+    public Text livesText;
 
     private SurfaceEffector2D launcherSE;
     private GameObject currentPlayer;
-
-    private int powerMin = 10;
-    private int powerMax = 100;
-    private int angleMin = 10;
-    private int angleMax = 80;
+    private bool isFlying = false;
 
 	// Use this for initialization
 	void Start () {
 	    launcherSE = GetComponent<SurfaceEffector2D>();
-        powerSlider.minValue = powerMin;
-        powerSlider.maxValue = powerMax;
-        angleSlider.minValue = angleMin;
-        angleSlider.maxValue = angleMax;
+        UpdateLivesText();
 	}
 	
 	// Update is called once per frame
@@ -44,11 +38,14 @@ public class LauncherController : MonoBehaviour {
 	}
 
     private void LoadLauncher() {
-        if (players.Count > 0) {
+        if (currentPlayer == null) {
+            isFlying = false;
+        }
+        if (players.Count > 0 && !isFlying) {
             currentPlayer = null;
             currentPlayer = PrefabUtility.InstantiatePrefab(players[0]) as GameObject;
 	        cameraController.projectile = currentPlayer.transform;
-            currentPlayer.transform.position = new Vector3(-1000f, -1000f, -1000f);
+            
             players.RemoveAt(0);
         } else { 
 
@@ -56,30 +53,42 @@ public class LauncherController : MonoBehaviour {
     }
 
     private void FireCurrentPlayer() {
-        Vector3 temp = this.transform.position;
-        temp.y += 2f;
-        currentPlayer.transform.position = temp;
+        if (!isFlying && players.Count > 0) {
+            isFlying = true;
+
+            UpdateLivesText();
+            
+            //Set player on the launcher
+            Vector3 temp = this.transform.position;
+            temp.y += 2f;
+            temp.z = 0f;
+            currentPlayer.transform.position = temp;
+        }
     }
 
     private void UpdateLauncher(){
         //Power
-        if (power > powerMax)
-            power = powerMax;
-        else if (power < powerMin)
-            power = powerMin;
+        if (power > powerSlider.maxValue)
+            power = powerSlider.maxValue;
+        else if (power < powerSlider.minValue)
+            power = powerSlider.minValue;
         else 
             launcherSE.speed = power;
         
         
         //Angle
-        if (angle > angleMax)
-            angle = angleMax;
-         else if (angle < angleMin)
-            angle = angleMin;
+        if (angle > angleSlider.maxValue)
+            angle = angleSlider.maxValue;
+         else if (angle < angleSlider.minValue)
+            angle = angleSlider.minValue;
          else 
             pivot.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         powerSlider.value = power;
         angleSlider.value = angle;
+    }
+
+    private void UpdateLivesText() {
+        livesText.text = "Lives: " + players.Count;
     }
 }
