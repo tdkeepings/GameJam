@@ -5293,7 +5293,7 @@ MonoBehaviour:
   - {fileID: 178224, guid: 3d59d3cba7cc10e4c9e84f1712400be3, type: 2}
   - {fileID: 178224, guid: ce3ffc0bc51a3824b98787a0be3d181b, type: 2}
   angle: 20
-  power: 0
+  power: 20
   pivot: {fileID: 1275166468}
   cameraController: {fileID: 261319854}
   powerSlider: {fileID: 1517229558}
@@ -27709,10 +27709,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1503644055}
   m_HandleRect: {fileID: 2127265595}
   m_Direction: 2
-  m_MinValue: 5
+  m_MinValue: 10
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
