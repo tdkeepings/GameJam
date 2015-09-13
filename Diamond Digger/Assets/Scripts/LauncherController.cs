@@ -59,10 +59,12 @@ public class LauncherController : MonoBehaviour {
             UpdateLivesText();
             
             //Set player on the launcher
-            Vector3 temp = this.transform.position;
-            temp.y += 2f;
-            temp.z = 0f;
-            currentPlayer.transform.position = temp;
+            Vector3 positionTemp = this.transform.position;
+            positionTemp.y += 1f;
+            positionTemp.z = 0f;
+
+            currentPlayer.transform.position = positionTemp;
+            currentPlayer.transform.rotation = this.transform.rotation;
         }
     }
 

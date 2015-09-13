@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Block.cs" />
      <Compile Include="Assets\Scripts\BlockNeighbours.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\DestroyBlockTrigger.cs" />
      <Compile Include="Assets\Scripts\GroundGenerator.cs" />
      <Compile Include="Assets\Scripts\KillPlayerTrigger.cs" />
      <Compile Include="Assets\Scripts\LauncherController.cs" />

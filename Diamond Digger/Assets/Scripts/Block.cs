@@ -29,6 +29,8 @@ public class Block : MonoBehaviour
 	public GameObject left;
 	public GameObject right;
 
+    public AudioSource destroyClip;
+
     [System.Serializable]
     public class UnityScoreEvent : UnityEvent<float> { };
 
@@ -63,6 +65,8 @@ public class Block : MonoBehaviour
 
 	void DestroyBlock()
 	{
+        if(destroyClip != null)
+            destroyClip.Play();
 		SetState(BlockState.Destroyed);
 		UpdateEdges();
 	}
