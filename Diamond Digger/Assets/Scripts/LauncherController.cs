@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class LauncherController : MonoBehaviour {
 
@@ -9,13 +10,24 @@ public class LauncherController : MonoBehaviour {
     public float power;
 	public Transform pivot;
 	public ProjectileFollow cameraController;
+    public Slider powerSlider;
+    public Slider angleSlider;
 
     private SurfaceEffector2D launcherSE;
     private GameObject currentPlayer;
 
+    private int powerMin = 10;
+    private int powerMax = 100;
+    private int angleMin = 10;
+    private int angleMax = 80;
+
 	// Use this for initialization
 	void Start () {
 	    launcherSE = GetComponent<SurfaceEffector2D>();
+        powerSlider.minValue = powerMin;
+        powerSlider.maxValue = powerMax;
+        angleSlider.minValue = angleMin;
+        angleSlider.maxValue = angleMax;
 	}
 	
 	// Update is called once per frame
@@ -47,25 +59,27 @@ public class LauncherController : MonoBehaviour {
         Vector3 temp = this.transform.position;
         temp.y += 2f;
         currentPlayer.transform.position = temp;
-        
     }
 
     private void UpdateLauncher(){
         //Power
-        if (power > 100)
-            power = 100;
-        else if (power < 10)
-            power = 10;
-        else {
+        if (power > powerMax)
+            power = powerMax;
+        else if (power < powerMin)
+            power = powerMin;
+        else 
             launcherSE.speed = power;
-        }
+        
         
         //Angle
-        if (angle > 45) 
-            angle = 45f;
-         else if (angle < 10) 
-            angle = 10f;
+        if (angle > angleMax)
+            angle = angleMax;
+         else if (angle < angleMin)
+            angle = angleMin;
          else 
             pivot.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        powerSlider.value = power;
+        angleSlider.value = angle;
     }
 }
