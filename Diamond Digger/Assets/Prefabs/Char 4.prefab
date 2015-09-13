@@ -13,7 +13,7 @@ GameObject:
   - 50: {fileID: 5085872}
   - 114: {fileID: 11403458}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Char 4
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1306738017
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f862cfd150369e44a8b6c3b55947d50d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b1ae78d8f31bd4a45835e32e4837097f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -108,6 +108,11 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 95f9855cfd6d7214787be8842620ba66, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b1ae78d8f31bd4a45835e32e4837097f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178224}

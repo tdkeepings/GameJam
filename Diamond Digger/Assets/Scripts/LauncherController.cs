@@ -87,6 +87,10 @@ public class LauncherController : MonoBehaviour {
     }
 
     private void UpdateLivesText() {
-        livesText.text = "Lives: " + players.Count;
+        if (players == null) {
+            livesText.text = "Lives: 0";
+        } else {
+            livesText.text = "Lives: " + players.Count;
+        }
     }
 }
